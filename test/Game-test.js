@@ -25,16 +25,20 @@ describe('Game', () => {
     });
 
     it('should be an instance of Game', () => {
-        game.start();
         expect(game).to.be.an.instanceof(Game);
     });
-
+    
     it('should keep track of the current round', () => {
-       expect(game.currentRound).to.equal(0);
+        expect(game.currentRound).to.equal(undefined);
+
+        game.start();
+
+        expect(game.currentRound).to.be.an.instanceof(Round);
     })
 
     it.skip('should be able to create cards', () => {
-
+        game.start();
+        expect()
     });
 
     it.skip('should be able to put cards in a deck', () => {

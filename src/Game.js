@@ -1,13 +1,13 @@
 const data = require('./data');
 const prototypeQuestions = data.prototypeData;
 const util = require('./util');
-// const Card = require('../src/Card');
+const Card = require('../src/Card');
 const Deck = require('./Deck');
 const Round = require('./Round');
 
 class Game {                      
   constructor() {
-    this.currentRound = 0;
+    this.currentRound;
   }
 
   printMessage(deck, round) {
@@ -20,14 +20,14 @@ class Game {
   }
 
   start() {
-    const deckOfCards = [];
-
-    prototypeQuestions.forEach((card) => {
-      deckOfCards.push(card);
+    const getCard = prototypeQuestions.map((card) => {
+      const eachCard = new Card(card.id, card.question, card.answers, card.correctAnswer)
+      return eachCard;
     });
 
-    const deck = new Deck(deckOfCards);
+    const deck = new Deck(getCard);
     const round = new Round(deck);
+    this.currentRound = round;
     this.printMessage(deck, round);
     this.printQuestion(round);
 
